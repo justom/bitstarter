@@ -4,7 +4,7 @@ var fs = require('fs');
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-    buf = new Buffer(2078);
+    buf = new Buffer(8192); // XXX - Assigned to be bigger than the file.
     len = buf.write(fs.readFileSync('index.html', 'utf-8'));
     response.send(buf.toString('utf-8', 0, len));
   // response.send('Hello World 2!');
